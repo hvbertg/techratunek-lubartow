@@ -3,7 +3,17 @@ const przyciskMenu = document.getElementById('przycisk-menu');
 const nawigacjaGlowna = document.getElementById('nawigacja-glowna');
 
 przyciskMenu.addEventListener('click', () => {
-    nawigacjaGlowna.classList.toggle('aktywne');
+    const czyOtwarte = nawigacjaGlowna.classList.toggle('aktywne');
+    przyciskMenu.setAttribute('aria-expanded', czyOtwarte);
+});
+
+document.addEventListener('click', (zdarzenie) => {
+    const kliknietyLink = zdarzenie.target.closest('#nawigacja-glowna a');
+    if (kliknietyLink) {
+        console.log('Kliknięto link:', kliknietyLink.getAttribute('href'));
+        nawigacjaGlowna.classList.remove('aktywne');
+        przyciskMenu.setAttribute('aria-expanded', 'false');
+    }
 });
 
 // 2. Przełącznik motywu
