@@ -17,15 +17,24 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Arial, sans-serif;
     line-height: 1.6;
     background-color: var(--kolor-tla);
     color: var(--kolor-tekstu);
     overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+h1, h2, h3 {
+    line-height: 1.25;
 }
 
 .kontener {
@@ -91,13 +100,21 @@ img {
 
 .przycisk-menu {
     display: none;
-    background: none;
-    border: 1px solid var(--kolor-ramki);
+    background-color: var(--kolor-tla-dodatkowy);
     color: var(--kolor-tekstu);
-    padding: 8px 12px;
+    border: 1px solid var(--kolor-ramki);
+    padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
+    font-family: inherit;
     font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.przycisk-menu:hover {
+    background-color: var(--kolor-ramki);
 }
 
 .przycisk-trybu {
@@ -413,4 +430,25 @@ body.tryb-ciemny {
         align-items: flex-start;
         gap: 6px;
     }
+
+    .logo { 
+        flex: 1 1 100%; 
+    }
+
+    .przycisk-trybu { 
+        margin-left: auto; 
+    }
+}
+
+:focus-visible {
+    outline: 3px solid var(--kolor-glowny);
+    outline-offset: 2px;
+}
+
+body.tryb-ciemny .przycisk-glowny {
+    background-color: #2563eb;
+}
+
+body.tryb-ciemny .przycisk-glowny:hover {
+    background-color: #1d4ed8;
 }
