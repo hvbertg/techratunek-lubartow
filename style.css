@@ -1,4 +1,3 @@
-/* Reset i polskie zmienne kolorystyczne */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -42,7 +41,7 @@ img {
     display: block;
 }
 
-/* Nagłówek i Nawigacja (Flexbox) */
+/* Flexbox */
 .naglowek-strony {
     background-color: var(--tlo-karty);
     border-bottom: 1px solid var(--kolor-ramki);
@@ -332,4 +331,86 @@ img {
     padding: 15px;
     border-top: 1px solid #334155;
     font-size: 0.9rem;
+}
+
+/* Tryb ciemny */
+body.tryb-ciemny {
+    --kolor-tla: #0f172a;
+    --kolor-tla-dodatkowy: #1e293b;
+    --kolor-tekstu: #f1f5f9;
+    --kolor-tekstu-szary: #cbd5e1;
+    --kolor-glowny: #3b82f6;
+    --kolor-glowny-najazd: #2563eb;
+    --tlo-karty: #1e293b;
+    --kolor-ramki: #334155;
+}
+
+/* Komunikaty walidacji formularza */
+.komunikat-formularza.blad {
+    display: block;
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #f87171;
+}
+
+.komunikat-formularza.sukces {
+    display: block;
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #4ade80;
+}
+
+/* Responsywność dla tabletów i telefonów */
+@media (max-width: 768px) {
+    .zawartosc-naglowka {
+        flex-wrap: wrap;
+        padding: 12px 20px;
+    }
+
+    .przycisk-menu {
+        display: block;
+    }
+
+    .nawigacja-glowna {
+        display: none;
+        width: 100%;
+        order: 4;
+    }
+
+    .nawigacja-glowna.aktywne {
+        display: block;
+    }
+
+    .nawigacja-glowna ul {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 0;
+    }
+
+    .nawigacja-glowna a {
+        display: block;
+        padding: 10px;
+        background-color: var(--kolor-tla-dodatkowy);
+    }
+
+    .zawartosc-powitalna,
+    .zawartosc-o-nas,
+    .wiersz-formularza,
+    .zawartosc-stopki {
+        flex-direction: column;
+    }
+
+    .tekst-powitalny h1 {
+        font-size: 1.8rem;
+    }
+
+    .karta {
+        flex: 1 1 100%;
+    }
+
+    .pozycja-cennika {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
 }
