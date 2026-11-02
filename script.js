@@ -52,3 +52,52 @@ wyborMarki.addEventListener('change', () => {
         wyborModelu.appendChild(opcjaDomyslna);
     }
 });
+
+// 4. Walidacja formularza zgłoszenia naprawy
+const formularzNaprawy = document.getElementById('formularz-naprawy');
+const komunikatFormularza = document.getElementById('komunikat-formularza');
+
+formularzNaprawy.addEventListener('submit', (zdarzenie) => {
+    zdarzenie.preventDefault();
+
+    const marka = wyborMarki.value;
+    const model = wyborModelu.value;
+    const imieKlienta = document.getElementById('imie-klienta').value.trim();
+    const telefonKlienta = document.getElementById('telefon-klienta').value.trim();
+    const opisUsterki = document.getElementById('opis-usterki').value.trim();
+
+    const wzorTelefonu = /^[0-9]{9}$/;
+
+    if (!marka || !model) {
+        pokazKomunikat('Proszę wybrać markę oraz konkretny model telefonu z listy.', 'blad');
+        return;
+    }
+
+    if (imieKlienta.length < 2) {
+        pokazKomunikat('Proszę wpisać swoje imię (minimum 2 znaki).', 'blad');
+        return;
+    }
+
+    if (!wzorTelefonu.test(telefonKlienta)) {
+        pokazKomunikat('Proszę podać poprawny, 9-cyfrowy numer telefonu (bez spacji).', 'blad');
+        return;
+    }
+
+    if (opisUsterki.length < 10) {
+        pokazKomunikat('Opis usterki jest za krótki - wpisz minimum 10 znaków.', 'blad');
+        return;
+    }
+
+    pokazKomunikat(
+        `Dziękujemy, ${imieKlienta}! Zgłoszenie dla modelu ${model} zostało przyjęte. Oddzwonimy pod numer ${telefonKlienta}.`,
+        'sukces'
+    );
+    formularzNaprawy.reset();
+    wyborModelu.disabled = true;
+    wyborModelu.innerHTML = '<option value="">-- Najpierw wybierz markę --</option>';
+});
+
+function pokazKomunikat(tekst, typ) {
+    komunikatFormularza.textContent = tekst;
+    komunikatFormularza.className = `komunikat-formularza ${typ}`;
+}
